@@ -21,8 +21,7 @@ async def channel_post(client: Client, message: Message):
         print(e)
         await reply_text.edit_text("Something went Wrong..!")
         return
-    converted_id = post_message.id * abs(client.db_channel.id)
-    string = f"get-{converted_id}"
+    string = f"{post_message.id}-linuxbotz"        
     base64_string = await encode(string)
     link = f"https://t.me/{client.username}?start={base64_string}"
 
@@ -38,9 +37,8 @@ async def new_post(client: Client, message: Message):
 
     if DISABLE_CHANNEL_BUTTON:
         return
-
-    converted_id = message.id * abs(client.db_channel.id)
-    string = f"get-{converted_id}"
+        
+    string = f"{message.id}-linuxbotz"        
     base64_string = await encode(string)
     link = f"https://t.me/{client.username}?start={base64_string}"
     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=f'https://telegram.me/share/url?url={link}')]])
